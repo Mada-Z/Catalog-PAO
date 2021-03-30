@@ -188,6 +188,13 @@ public class Serviciu {
         }
 
         }
+    public static void sort(ArrayList<Materie> list)
+    {
+
+        list.sort((o1, o2)
+                -> o1.getNume_materie().compareTo(
+                o2.getNume_materie()));
+    }
 
 
     }

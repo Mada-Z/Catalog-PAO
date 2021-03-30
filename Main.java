@@ -52,7 +52,7 @@ public class Main {
 		for(Profesor prof : profesori){
 			System.out.println(prof);
 		}
-
+		serv.sort(materii);
 		System.out.println();
 		System.out.println("Materii: ");
 		for(Materie mat : materii){
