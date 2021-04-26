@@ -14,6 +14,14 @@ public class Clasa {
         this.id_diriginte = id_diriginte;
     }
 
+    public Clasa(int id_clasa, String nume_clasa, String generatie, int id_diriginte) {
+        this.id_clasa = id_clasa;
+        this.nume_clasa = nume_clasa;
+        this.generatie = generatie;
+        this.id_diriginte = id_diriginte;
+        ++id;
+    }
+
     public int getId_clasa() {
         return id_clasa;
     }

@@ -22,6 +22,17 @@ public class Elev {
         this.adresa_elev = adresa_elev;
     }
 
+    public Elev(int nr_matricol, int nr_catalog, int id_clasa, String nume_elev, String prenume_elev, String CNP_elev, String adresa_elev) {
+        this.nr_matricol = nr_matricol;
+        this.nr_catalog = nr_catalog;
+        this.id_clasa = id_clasa;
+        this.nume_elev = nume_elev;
+        this.prenume_elev = prenume_elev;
+        this.CNP_elev = CNP_elev;
+        this.adresa_elev = adresa_elev;
+        ++nr;
+    }
+
     public int getNr_matricol() {
         return nr_matricol;
     }

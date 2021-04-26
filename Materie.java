@@ -12,6 +12,12 @@ public class Materie {
         this.nume_materie = nume_materie;
     }
 
+    public Materie(int id_materie, String nume_materie) {
+        this.id_materie = id_materie;
+        this.nume_materie = nume_materie;
+        ++id;
+    }
+
     public int getId_materie() {
         return id_materie;
     }

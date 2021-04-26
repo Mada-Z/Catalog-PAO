@@ -22,6 +22,18 @@ public class ParinteSauTutore {
         this.serie_nr_CI = serie_nr_CI;
     }
 
+    public ParinteSauTutore(int id_parinte, int id_elev, String nume_parinte, String prenume_parinte, String tel_parinte, String adresa_parinte, String nivel_studii, String serie_nr_CI) {
+        this.id_parinte = id_parinte;
+        this.id_elev = id_elev;
+        this.nume_parinte = nume_parinte;
+        this.prenume_parinte = prenume_parinte;
+        this.tel_parinte = tel_parinte;
+        this.adresa_parinte = adresa_parinte;
+        this.nivel_studii = nivel_studii;
+        this.serie_nr_CI = serie_nr_CI;
+        ++id;
+    }
+
     public int getId_parinte() {
         return id_parinte;
     }

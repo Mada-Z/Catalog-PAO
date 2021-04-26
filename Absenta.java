@@ -18,6 +18,14 @@ public class Absenta {
         this.absenta_la = absenta_la;
     }
 
+    public Absenta(int id_absenta, LocalDate data_absenta, int id_elev, int absenta_la) {
+        this.id_absenta = id_absenta;
+        this.data_absenta = data_absenta;
+        this.id_elev = id_elev;
+        this.absenta_la = absenta_la;
+        ++id;
+    }
+
     public int getId_absenta() {
         return id_absenta;
     }

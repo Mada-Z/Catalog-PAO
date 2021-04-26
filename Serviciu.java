@@ -88,13 +88,13 @@ public class Serviciu {
         }
         return null;
     }
-        public void adauga_profesor(String nume, String prenume, String telefon, String adresa, String localitate, int salariu, int id_materie, int id_clasa, boolean diriginte){
-            Profesor profesor = new Profesor(nume, prenume, telefon, adresa, localitate, salariu, diriginte, null);
-            profesori.add(profesor);
-            Clasa clasa = gaseste_clasa(id_clasa);
-
-
-    }
+//        public void adauga_profesor(String nume, String prenume, String telefon, String adresa, String localitate, int salariu, int id_materie, int id_clasa, boolean diriginte){
+//            Profesor profesor = new Profesor(nume, prenume, telefon, adresa, localitate, salariu, diriginte, null);
+//            profesori.add(profesor);
+//            Clasa clasa = gaseste_clasa(id_clasa);
+//
+//
+//    }
         public void adauga_clasa(String nume_clasa, String generatie, int id_diriginte){
         if(gaseste_profesor(id_diriginte)!= null){
             if(gaseste_diriginte(id_diriginte) != null){
@@ -125,7 +125,8 @@ public class Serviciu {
             if (gaseste_materie(id_materie) != null) {
                 Profesor profesor = new Profesor(nume, prenume, telefon, adresa, localitate, salariu, diriginte, null);
                 Materie materie = gaseste_materie(id_materie);
-                profesor.materii_predate.add(materie);
+                profesor.getMaterii_predate().add(materie);
+                profesori.add(profesor);
             } else {
                 System.out.println("Nu exista materia!");
 

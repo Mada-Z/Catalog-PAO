@@ -24,6 +24,21 @@ public class Profesor {
         this.salariu = salariu;
         this.diriginte = diriginte;
         materii_predate = new ArrayList<>();
+        this.materii_predate = materii_predate;
+    }
+
+    public Profesor(int id_prof, String nume, String prenume, String telefon, String adresa, String localitate, int salariu, boolean diriginte, ArrayList<Materie> materii_predate) {
+        this.id_prof = id_prof;
+        this.nume = nume;
+        this.prenume = prenume;
+        this.telefon = telefon;
+        this.adresa = adresa;
+        this.localitate = localitate;
+        this.salariu = salariu;
+        this.diriginte = diriginte;
+        this.materii_predate = new ArrayList<>();
+        this.materii_predate = materii_predate;
+        ++id;
     }
 
     public int getId_prof() {

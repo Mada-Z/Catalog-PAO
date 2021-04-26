@@ -6,7 +6,7 @@ public class Main {
 
     public static void main(String[] args) {
 	Serviciu serv = new Serviciu();
-	serv.adauga_materie("Matematica");
+//	serv.adauga_materie("Matematica");
 	ArrayList<Clasa> clase = serv.getClase();
 	ArrayList<Profesor> profesori = serv.getProfesori();
 	ArrayList<Materie> materii = serv.getMaterii();
@@ -15,31 +15,40 @@ public class Main {
 	ArrayList<Elev> elevi = serv.getElevi();
 	ArrayList<ParinteSauTutore> par_tut = serv.getPar_tut();
 
-	serv.adauga_materie("Limba si Literatura Romana");
-	serv.adauga_materie("Informatica");
-	serv.adauga_materie("Limba Latina");
+//	serv.adauga_materie("Limba si Literatura Romana");
+//	serv.adauga_materie("Informatica");
+//	serv.adauga_materie("Limba Latina");
 
 
 
-	serv.adauga_profesor("Popescu", "Ionel", "0712345678", "Str. Luminii, nr.70", "Buzau", 2300, 1, 1, true);
-	serv.adauga_profesor("Ionescu", "Maricica","0723456789", "Str. Plopilor, nr. 85", "Bajani", 2500, 2, 2, true);
+//	serv.adauga_profesor("Popescu", "Ionel", "0712345678", "Str. Luminii nr.70", "Buzau", 2300, true, 1);
+//	serv.adauga_profesor("Ionescu", "Maricica","0723456789", "Str. Plopilor nr. 85", "Bajani", 2500, true, 2);
+//
+//	serv.adauga_clasa("a XII-a C", "2015-2019", 1);
+//	serv.adauga_clasa("a X-a I", "2018-2022", 2);
+//
+//	serv.adauga_elev(1, 1, "Avram", "Nicu", "5000621345678", "Bd. Libertatii bl.75 scara b et.7 ap. 109");
+//	serv.adauga_elev(2,1,"Bercu", "Dana", "6000215321123", "Str. Crizantemelor nr. 17");
+//	serv.adauga_elev(1, 2, "Andrei", "Ioana", "6031212456789", "Str. Icoanei nr. 25");
+//	serv.adauga_elev(2,2, "Banica", "Marcel", "5031029765432", "Str. Victoriei bl. 45B ap. 29 et. 4");
+//
+//	serv.adauga_nota(7,4, 1003);
+//	serv.adauga_nota(10,1,1001);
+//
+//	serv.adauga_absenta(1002, 3);
+//	serv.adauga_absenta(1004, 2);
+//
+//	serv.adauga_parinte_tutore(1001, "Avram", "Marian", "0753624516", "Bd. Libertatii, bl.75, scara b, et.7, ap. 109", "superioare", "XZ123456");
+//	serv.adauga_parinte_tutore(1001, "Avram", "Clementina", "0753627861", "Bd. Libertatii, bl.75, scara b, et.7, ap. 109", "postliceale", "XZ123456");
 
-	serv.adauga_clasa("a XII-a C", "2015-2019", 1);
-	serv.adauga_clasa("a X-a I", "2018-2022", 2);
-
-	serv.adauga_elev(1, 1, "Avram", "Nicu", "5000621345678", "Bd. Libertatii, bl.75, scara b, et.7, ap. 109");
-	serv.adauga_elev(2,1,"Bercu", "Dana", "6000215321123", "Str. Crizantemelor, nr. 17");
-	serv.adauga_elev(1, 2, "Andrei", "Ioana", "6031212456789", "Str. Icoanei, nr. 25");
-	serv.adauga_elev(2,2, "Banica", "Marcel", "5031029765432", "Str. Victoriei, bl. 45B, ap. 29, et. 4");
-
-	serv.adauga_nota(7,4, 1003);
-	serv.adauga_nota(10,1,1001);
-
-	serv.adauga_absenta(1002, 3);
-	serv.adauga_absenta(1004, 2);
-
-	serv.adauga_parinte_tutore(1001, "Avram", "Marian", "0753624516", "Bd. Libertatii, bl.75, scara b, et.7, ap. 109", "superioare", "XZ123456");
-	serv.adauga_parinte_tutore(1001, "Avram", "Clementina", "0753627861", "Bd. Libertatii, bl.75, scara b, et.7, ap. 109", "postliceale", "XZ123456");
+		Citeste cit = new Citeste();
+		cit.citeste_materii(serv);
+		cit.citeste_profesori(serv);
+		cit.citeste_clase(serv);
+		cit.citeste_elevi(serv);
+		cit.citeste_note(serv);
+		cit.citeste_absente(serv);
+		cit.citeste_parinti_tutori(serv);
 
 		System.out.println();
 		System.out.println("Clase: ");
@@ -84,6 +93,14 @@ public class Main {
 		}
 
 
+	Afiseaza af = new Afiseaza();
+	af.afisare_materie(serv);
+	af.afisare_profesor(serv);
+	af.afisare_clasa(serv);
+	af.afisare_elev(serv);
+	af.afisare_nota(serv);
+	af.afisare_absenta(serv);
+	af.afisare_par_tut(serv);
 
 
     }

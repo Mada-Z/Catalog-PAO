@@ -18,6 +18,15 @@ public class Nota {
         this.id_elev = id_elev;
     }
 
+    public Nota(int nota_id, int val_nota, int id_materie, LocalDate data_nota, int id_elev) {
+        this.nota_id = nota_id;
+        this.val_nota = val_nota;
+        this.id_materie = id_materie;
+        this.data_nota = data_nota;
+        this.id_elev = id_elev;
+        ++id;
+    }
+
     public int getNota_id() {
         return nota_id;
     }
