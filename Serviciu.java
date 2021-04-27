@@ -88,14 +88,8 @@ public class Serviciu {
         }
         return null;
     }
-//        public void adauga_profesor(String nume, String prenume, String telefon, String adresa, String localitate, int salariu, int id_materie, int id_clasa, boolean diriginte){
-//            Profesor profesor = new Profesor(nume, prenume, telefon, adresa, localitate, salariu, diriginte, null);
-//            profesori.add(profesor);
-//            Clasa clasa = gaseste_clasa(id_clasa);
-//
-//
-//    }
-        public void adauga_clasa(String nume_clasa, String generatie, int id_diriginte){
+
+        public void adauga_clasa(String nume_clasa, String generatie, int id_diriginte) throws MyException {
         if(gaseste_profesor(id_diriginte)!= null){
             if(gaseste_diriginte(id_diriginte) != null){
                 Clasa clasa = new Clasa(nume_clasa, generatie, id_diriginte);
@@ -103,10 +97,12 @@ public class Serviciu {
             }
             else{
                 System.out.println("Profesorul nu este diriginte!");
+                throw new MyException("Profesorul nu este diriginte!");
             }
         }
         else{
             System.out.println("Profesorul nu exista!");
+            throw new MyException("Profesorul nu exista!");
         }
         }
         public Materie gaseste_materie(int id){
@@ -120,7 +116,7 @@ public class Serviciu {
         Materie materie = new Materie(nume);
         materii.add(materie);
         }
-        public void adauga_profesor(String nume, String prenume, String telefon, String adresa, String localitate, int salariu, boolean diriginte,int id_materie) {
+        public void adauga_profesor(String nume, String prenume, String telefon, String adresa, String localitate, int salariu, boolean diriginte,int id_materie) throws MyException {
 
             if (gaseste_materie(id_materie) != null) {
                 Profesor profesor = new Profesor(nume, prenume, telefon, adresa, localitate, salariu, diriginte, null);
@@ -129,16 +125,19 @@ public class Serviciu {
                 profesori.add(profesor);
             } else {
                 System.out.println("Nu exista materia!");
+                throw new MyException("Nu exista materia!");
+
 
             }
         }
-        public void adauga_nota(int val_nota, int id_materie, int id_elev) {
+        public void adauga_nota(int val_nota, int id_materie, int id_elev) throws MyException {
             if (gaseste_materie(id_materie) != null && gaseste_elev(id_elev)!=null) {
                 LocalDate data_nota = LocalDate.now();
                 Nota nota = new Nota(val_nota, id_materie, data_nota, id_elev);
                 note.add(nota);
             } else {
                 System.out.println("Materia nu exista sau elevul nu exista!");
+                throw new MyException("Materia nu exista sau elevul nu exista!");
             }
         }
         public Elev gaseste_elev(int id){
@@ -158,7 +157,7 @@ public class Serviciu {
         }
         return null;
         }
-        public void adauga_absenta(int id_elev,int id_materie){
+        public void adauga_absenta(int id_elev,int id_materie) throws MyException {
         if(gaseste_elev(id_elev)!=null && gaseste_materie(id_materie)!=null){
             LocalDate data_absenta = LocalDate.now();
             Absenta absenta = new Absenta(data_absenta, id_elev, id_materie);
@@ -166,12 +165,14 @@ public class Serviciu {
         }
         else {
             System.out.println("Materia sau elevul nu exista!");
+            throw new MyException("Materia sau elevul nu exista!");
         }
         }
-        public void adauga_elev(int nr_catalog, int id_clasa, String nume, String prenume, String CNP, String adresa) {
+        public void adauga_elev(int nr_catalog, int id_clasa, String nume, String prenume, String CNP, String adresa) throws MyException {
             if (gaseste_clasa(id_clasa) != null) {
                 if (CNP.length() != 13) {
                     System.out.println("CNP-ul nu este corect!");
+                    throw new MyException("CNP-ul nu este corect!");
 
                 } else {
                     Elev elev = new Elev(nr_catalog, id_clasa, nume, prenume, CNP, adresa);
@@ -179,13 +180,14 @@ public class Serviciu {
                 }
             }
         }
-        public void adauga_parinte_tutore(int id_elev, String nume, String prenume, String tel, String adresa, String studii, String serie_nr_CI) {
+        public void adauga_parinte_tutore(int id_elev, String nume, String prenume, String tel, String adresa, String studii, String serie_nr_CI) throws MyException {
         if(gaseste_elev(id_elev)!=null){
             ParinteSauTutore parintesaututore = new ParinteSauTutore(id_elev,nume,prenume,tel,adresa,studii,serie_nr_CI);
             par_tut.add(parintesaututore);
         }
         else {
             System.out.println("Elevul nu exista!");
+            throw new MyException("Elevul nu exista!");
         }
 
         }

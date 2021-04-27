@@ -92,8 +92,49 @@ public class Main {
 			System.out.println(pt);
 		}
 
+		try {
+			serv.adauga_clasa("a X-a B", "2018-2022", 5);
+		} catch (MyException e) {
+			e.printStackTrace();
+		}
+		try {
+			serv.adauga_profesor("Gheorghe", "Radu", "0734567890", "Str. Independentei nr. 12", "Bobocu", 3000, true, 6);
+		} catch (MyException e) {
+			e.printStackTrace();
+		}
+		try {
+			serv.adauga_nota(5, 7, 1);
+		} catch (MyException e) {
+			e.printStackTrace();
+		}
+		try {
+			serv.adauga_nota(5, 1, 10);
+		} catch (MyException e) {
+			e.printStackTrace();
+		}
+		try {
+			serv.adauga_absenta(1,8);
+		} catch (MyException e) {
+			e.printStackTrace();
+		}
+		try {
+			serv.adauga_absenta(8,1);
+		} catch (MyException e) {
+			e.printStackTrace();
+		}
+		try {
+			serv.adauga_elev(16,2,"Rotaru", "Claudiu", "503043010003","Str. Orizontului nr 11");
+		} catch (MyException e) {
+			e.printStackTrace();
+		}
+		try {
+			serv.adauga_parinte_tutore(1005, "Bercy", "Ion", "0729761538", "Str. Crizantemelor nr. 17", "medii", "XZ123456");
+		} catch (MyException e) {
+			e.printStackTrace();
+		}
 
-	Afiseaza af = new Afiseaza();
+
+		Afiseaza af = new Afiseaza();
 	af.afisare_materie(serv);
 	af.afisare_profesor(serv);
 	af.afisare_clasa(serv);
