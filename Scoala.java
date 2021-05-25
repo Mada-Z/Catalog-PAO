@@ -10,7 +10,7 @@ public class Scoala {
     public String fax;
     public String adresa;
 
-    public Scoala(int id_scoala, String nume_scoala, String telefon, String fax, String adresa) {
+    public Scoala(String nume_scoala, String telefon, String fax, String adresa) {
         this.id_scoala = ++id;
         this.nume_scoala = nume_scoala;
         this.telefon = telefon;

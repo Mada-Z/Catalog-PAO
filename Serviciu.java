@@ -1,43 +1,56 @@
 package com.company;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Serviciu {
+    DBConnection dbConnection = new DBConnection();
+    Connection connection = dbConnection.DBConnection();
  ArrayList<Clasa> clase = new ArrayList<>();
  ArrayList<Profesor> profesori = new ArrayList<>();
  ArrayList<Materie> materii = new ArrayList<>();
  ArrayList<Nota> note = new ArrayList<>();
  ArrayList<Absenta> absente = new ArrayList<>();
  ArrayList<Elev> elevi = new ArrayList<>();
- ArrayList<ParinteSauTutore> par_tut = new ArrayList<>();
+ ArrayList<ParinteSauTutore> parinti = new ArrayList<>();
+ ArrayList<Scoala> scoli = new ArrayList<>();
 
-    public ArrayList<Clasa> getClase() {
-        return clase;
+    public ArrayList<Scoala> getScoli() throws SQLException {
+        return dbConnection.getScoli();
+    }
+
+    public void setScoli(ArrayList<Scoala> scoli){
+        this.scoli = scoli;
+    }
+
+    public ArrayList<Clasa> getClase() throws SQLException {
+        return dbConnection.getClase();
     }
 
     public void setClase(ArrayList<Clasa> clase) {
         this.clase = clase;
     }
 
-    public ArrayList<Profesor> getProfesori() {
-        return profesori;
+    public ArrayList<Profesor> getProfesori() throws SQLException {
+        return dbConnection.getProfesori();
     }
 
     public void setProfesori(ArrayList<Profesor> profesori) {
         this.profesori = profesori;
     }
 
-    public ArrayList<Materie> getMaterii() {
-        return materii;
+    public ArrayList<Materie> getMaterii() throws SQLException {
+        return dbConnection.getMaterii();
     }
 
     public void setMaterii(ArrayList<Materie> materii) {
         this.materii = materii;
     }
 
-    public ArrayList<Nota> getNote() {
-        return note;
+    public ArrayList<Nota> getNote() throws SQLException {
+        return dbConnection.getNote();
     }
 
     public void setNote(ArrayList<Nota> note) {
@@ -52,25 +65,32 @@ public class Serviciu {
         this.absente = absente;
     }
 
-    public ArrayList<Elev> getElevi() {
-        return elevi;
+    public ArrayList<Elev> getElevi() throws SQLException {
+        return dbConnection.getElevi();
     }
 
     public void setElevi(ArrayList<Elev> elevi) {
         this.elevi = elevi;
     }
 
-    public ArrayList<ParinteSauTutore> getPar_tut() {
-        return par_tut;
+    public ArrayList<ParinteSauTutore> getParinti() throws SQLException {
+        return dbConnection.getParinti();
     }
 
     public void setPar_tut(ArrayList<ParinteSauTutore> par_tut) {
-        this.par_tut = par_tut;
+        this.parinti = parinti;
     }
     public Clasa gaseste_clasa(int id) {
         for (Clasa cls : clase) {
             if (cls.getId_clasa() == id)
                 return cls;
+        }
+        return null;
+    }
+    public  ParinteSauTutore gaseste_parinte(int id) {
+        for(ParinteSauTutore par : parinti){
+            if(par.getId_parinte() == id)
+                return par;
         }
         return null;
     }
@@ -89,21 +109,9 @@ public class Serviciu {
         return null;
     }
 
-        public void adauga_clasa(String nume_clasa, String generatie, int id_diriginte) throws MyException {
-        if(gaseste_profesor(id_diriginte)!= null){
-            if(gaseste_diriginte(id_diriginte) != null){
-                Clasa clasa = new Clasa(nume_clasa, generatie, id_diriginte);
-                clase.add(clasa);
-            }
-            else{
-                System.out.println("Profesorul nu este diriginte!");
-                throw new MyException("Profesorul nu este diriginte!");
-            }
-        }
-        else{
-            System.out.println("Profesorul nu exista!");
-            throw new MyException("Profesorul nu exista!");
-        }
+        public void adauga_clasa(String nume_clasa, String generatie, int id_diriginte){
+        Clasa clasa = new Clasa(nume_clasa, generatie, id_diriginte);
+        dbConnection.adauga_clasa(clasa);
         }
         public Materie gaseste_materie(int id){
         for(Materie materie : materii){
@@ -112,33 +120,33 @@ public class Serviciu {
         }
         return null;
         }
+        public Scoala gaseste_scoala(int id){
+        for(Scoala scoala : scoli){
+            if(scoala.getId_scoala()==id)
+                return scoala;
+        }
+        return null;
+        }
         public void adauga_materie(String nume){
         Materie materie = new Materie(nume);
-        materii.add(materie);
+        dbConnection.adauga_materie(materie);
         }
-        public void adauga_profesor(String nume, String prenume, String telefon, String adresa, String localitate, int salariu, boolean diriginte,int id_materie) throws MyException {
-
-            if (gaseste_materie(id_materie) != null) {
-                Profesor profesor = new Profesor(nume, prenume, telefon, adresa, localitate, salariu, diriginte, null);
-                Materie materie = gaseste_materie(id_materie);
-                profesor.getMaterii_predate().add(materie);
-                profesori.add(profesor);
-            } else {
-                System.out.println("Nu exista materia!");
-                throw new MyException("Nu exista materia!");
-
-
-            }
+        public void materii_predate(int id_profesor, int id_materie){
+        dbConnection.materii_predate(id_profesor, id_materie);
         }
-        public void adauga_nota(int val_nota, int id_materie, int id_elev) throws MyException {
-            if (gaseste_materie(id_materie) != null && gaseste_elev(id_elev)!=null) {
-                LocalDate data_nota = LocalDate.now();
-                Nota nota = new Nota(val_nota, id_materie, data_nota, id_elev);
-                note.add(nota);
-            } else {
-                System.out.println("Materia nu exista sau elevul nu exista!");
-                throw new MyException("Materia nu exista sau elevul nu exista!");
-            }
+        public void adauga_scoala(String nume, String telefon, String fax, String adresa){
+        Scoala scoala = new Scoala(nume, telefon, fax, adresa);
+        dbConnection.adauga_scoala(scoala);
+        }
+        public void adauga_profesor(String nume, String prenume, String telefon, String adresa, String localitate, int salariu, boolean diriginte) {
+        Profesor profesor = new Profesor(nume, prenume,telefon,adresa,localitate,salariu,diriginte);
+        dbConnection.adauga_profesor(profesor);
+        }
+        public void adauga_nota(int val_nota, int id_materie, int id_elev){
+         LocalDate data_nota = LocalDate.now();
+         Nota nota = new Nota(val_nota, id_materie, data_nota, id_elev);
+         dbConnection.adauga_nota(nota);
+
         }
         public Elev gaseste_elev(int id){
                 for (Elev elev : elevi) {
@@ -168,28 +176,13 @@ public class Serviciu {
             throw new MyException("Materia sau elevul nu exista!");
         }
         }
-        public void adauga_elev(int nr_catalog, int id_clasa, String nume, String prenume, String CNP, String adresa) throws MyException {
-            if (gaseste_clasa(id_clasa) != null) {
-                if (CNP.length() != 13) {
-                    System.out.println("CNP-ul nu este corect!");
-                    throw new MyException("CNP-ul nu este corect!");
-
-                } else {
-                    Elev elev = new Elev(nr_catalog, id_clasa, nume, prenume, CNP, adresa);
-                    elevi.add(elev);
-                }
-            }
+        public void adauga_elev(int nr_catalog, int id_clasa, String nume, String prenume, String CNP, String adresa){
+        Elev elev = new Elev(nr_catalog,id_clasa,nume,prenume,CNP,adresa);
+        dbConnection.adauga_elev(elev);
         }
-        public void adauga_parinte_tutore(int id_elev, String nume, String prenume, String tel, String adresa, String studii, String serie_nr_CI) throws MyException {
-        if(gaseste_elev(id_elev)!=null){
-            ParinteSauTutore parintesaututore = new ParinteSauTutore(id_elev,nume,prenume,tel,adresa,studii,serie_nr_CI);
-            par_tut.add(parintesaututore);
-        }
-        else {
-            System.out.println("Elevul nu exista!");
-            throw new MyException("Elevul nu exista!");
-        }
-
+        public void adauga_parinte(int id_elev, String nume, String prenume, String tel, String adresa, String studii, String serie_nr_CI) {
+        ParinteSauTutore parinte = new ParinteSauTutore(id_elev,nume,prenume,tel,adresa,studii,serie_nr_CI);
+        dbConnection.adauga_parinte(parinte);
         }
     public static void sort(ArrayList<Materie> list)
     {
